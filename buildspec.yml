@@ -12,5 +12,7 @@ phases:
 
 artifacts:
   files:
-    - "**/*"
-  base-directory: build
+    - appspec.yml
+    - install.sh
+    - start.sh
+    - build/**/*

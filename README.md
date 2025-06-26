@@ -88,11 +88,11 @@ Archivos clave:
 
 ## Seguridad
 
-    API protegida con CORS
+- API protegida con CORS
 
-    IAM roles específicos para Lambda
+- IAM roles específicos para Lambda
 
-    EC2 con puertos controlados por grupo de seguridad
+- EC2 con puertos controlados por grupo de seguridad
 
 ---
 
@@ -121,11 +121,3 @@ Archivos clave:
 ### Build Logs
 
 ![build logs](buildLogs.PNG)
-
-```
-
-```
-
-```
-
-```

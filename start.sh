@@ -1,8 +1,7 @@
 #!/bin/bash
 set -x
 
-# Cambia a un directorio válido antes de ejecutar nada
 cd /home/ec2-user/app || exit 1
 
-# Levanta el servidor http y redirige logs correctamente
+# Levanta http-server en background y manda logs a /tmp/server.log
 nohup npx http-server -p 3000 > /tmp/server.log 2>&1 &

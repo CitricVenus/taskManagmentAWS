@@ -1,4 +1,10 @@
 #!/bin/bash
 set -x
-mkdir -p /home/ec2-user/app
-cp -r * /home/ec2-user/app/
+
+DEST=/home/ec2-user/app
+
+mkdir -p "$DEST"
+
+# Copiar todo el contenido del directorio actual (artifact) al destino
+# excluyendo carpetas ocultas (opcional)
+cp -r ./* "$DEST/"

@@ -16,7 +16,6 @@ function App() {
         const res = await fetch(`${API}/tasks`);
         const data = await res.json();
 
-        // data.body es string JSON → parsea para obtener array real
         const tasksArray = JSON.parse(data.body);
 
         setTasks(tasksArray);

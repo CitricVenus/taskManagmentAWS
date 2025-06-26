@@ -1,70 +1,123 @@
-# Getting Started with Create React App
+# Task Manager - Fullstack App en AWS (React + EC2 + Lambda)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicación web para la gestión de tareas, desarrollada con **React** como frontend y una arquitectura **serverless + EC2** en AWS. Permite realizar operaciones CRUD sobre tareas, integrando servicios como **EC2**, **Lambda**, **DynamoDB**, **API Gateway**y **CodePipeline**.
 
-## Available Scripts
+La aplicación está desplegada públicamente y accesible desde:
 
-In the project directory, you can run:
+`[http://3.148.235.61:3000/](http://3.148.235.61:3000/)`
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tecnologías utilizadas
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend**: React (Create React App), Bootstrap
+- **Backend**: AWS Lambda (Node.js)
+- **Base de datos**: Amazon DynamoDB
+- **API REST**: AWS API Gateway
+- **Servidor web**: Amazon EC2 (para servir el frontend)
+- **CI/CD**: AWS CodePipeline + CodeBuild + CodeDeploy
+- **Logs y monitoreo**: AWS CloudWatch
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Arquitectura general
 
-### `npm run build`
+```plaintext
+[ React App (EC2) ] ───▶ [ API Gateway ] ───▶ [ Lambda Functions ] ───▶ [ DynamoDB ]
+       ▲
+       │
+[ CodePipeline + CodeDeploy ]
+       │
+[ GitHub Repo ]
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Frontend (React + EC2)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    Aplicación React creada con Create React App
+    Para la aplicacion se utilizó Bootstrap
+    El contenido del build se despliega automáticamente en EC2 usando AWS CodeDeploy
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Backend (Lambda + API Gateway)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    Se crearón funciones lambda para operaciones sobre una  tabla DynamoDB
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| Método HTTP | Endpoint      | Acción           |
+| ----------- | ------------- | ---------------- |
+| `GET`       | `/tasks`      | Obtener tareas   |
+| `POST`      | `/tasks`      | Crear tarea      |
+| `PUT`       | `/tasks/{id}` | Actualizar tarea |
+| `DELETE`    | `/tasks/{id}` | Eliminar tarea   |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    API Gateway expone estas funciones Lambda como una REST API pública.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## CI/CD con CodePipeline
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    Origen: GitHub
 
-### Code Splitting
+    Compilación: CodeBuild compila el frontend (npm run build)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    Despliegue: CodeDeploy copia los archivos a /home/ec2-user/app en EC2 y reinicia el servidor
 
-### Analyzing the Bundle Size
+Archivos clave:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    buildspec.yml: indica a CodeBuild cómo construir el proyecto
 
-### Making a Progressive Web App
+    appspec.yml: define los pasos de despliegue para CodeDeploy
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    install.sh: script que limpia el directorio destino y copia los archivos del build
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## EC2
 
-### Deployment
+    Sistema operativo: Amazon Linux 2
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+    Servidor web: serve (Node.js)
 
-### `npm run build` fails to minify
+    Puerto 3000 habilitado en el grupo de seguridad
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    Directorio de despliegue: /home/ec2-user/app
+
+---
+
+## Seguridad
+
+    API protegida con CORS
+
+    IAM roles específicos para Lambda
+
+    EC2 con puertos controlados por grupo de seguridad
+
+---
+
+## Capturas de pantalla
+
+### Pipeline
+
+![pipeline](pipeline.PNG)
+
+### Api
+
+![api](api.PNG)
+
+### Update Task
+
+![update task](updateTask.PNG)
+
+### Create Task
+
+![create task](createTask.PNG)
+
+### Code Deploy
+
+![code deploy](codeDeploy.PNG)
+
+### Build Logs
+
+![build logs](buildLogs.PNG)
+```

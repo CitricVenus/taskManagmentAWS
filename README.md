@@ -4,7 +4,7 @@ Aplicación web para la gestión de tareas, desarrollada con **React** como fron
 
 La aplicación está desplegada públicamente y accesible desde:
 
-`[http://3.148.235.61:3000/](http://3.148.235.61:3000/)`
+[http://3.148.235.61:3000/](http://3.148.235.61:3000/)
 
 ---
 

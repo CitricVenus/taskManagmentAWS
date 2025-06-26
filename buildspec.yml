@@ -15,4 +15,5 @@ artifacts:
     - appspec.yml
     - install.sh
     - start.sh
-    - build/**/*
+    - '**/*'
+  base-directory: .

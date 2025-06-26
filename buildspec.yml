@@ -9,11 +9,11 @@ phases:
   build:
     commands:
       - npm run build
+      - cp appspec.yml build/
+      - cp install.sh build/
+      - cp start.sh build/
 
 artifacts:
   files:
-    - appspec.yml
-    - install.sh
-    - start.sh
     - '**/*'
   base-directory: build

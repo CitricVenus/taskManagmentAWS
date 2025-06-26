@@ -1,7 +1,5 @@
 #!/bin/bash
-set -x
-
 cd /home/ec2-user/app
 
-# Ejecutar http-server en segundo plano, redirigiendo stdout y stderr a archivos de log
-nohup http-server -p 3000 > server.log 2>&1 &
+# Arranca http-server en background, redireccionando logs para evitar que el proceso bloquee
+nohup npx http-server -p 3000 > server.log 2>&1 &

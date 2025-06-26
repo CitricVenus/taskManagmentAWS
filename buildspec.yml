@@ -9,10 +9,12 @@ phases:
   build:
     commands:
       - npm run build
+      # Copiar los archivos necesarios dentro de build para que queden empaquetados juntos
+      - cp ../appspec.yml ./          # Copia appspec.yml dentro de build/
+      - cp ../install.sh ./           # Copia install.sh dentro de build/
+      - cp ../start.sh ./             # Copia start.sh dentro de build/
 
 artifacts:
+  base-directory: build
   files:
-    - appspec.yml
-    - install.sh
-    - start.sh
-    - build/**/*
+    - '**/*'

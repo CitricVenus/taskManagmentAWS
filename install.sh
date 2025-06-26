@@ -5,5 +5,5 @@ DEST=/home/ec2-user/app
 
 mkdir -p "$DEST"
 
-# Solo copiar archivos del bundle de CodeDeploy
-cp -r ./* "$DEST"
+# Copia solo el contenido del directorio de despliegue (ya está en build/)
+cp -r * "$DEST/"

@@ -22,13 +22,14 @@ La aplicación está desplegada públicamente y accesible desde:
 
 ## Arquitectura general
 
-```plaintext
-[ React App (EC2) ] ───▶ [ API Gateway ] ───▶ [ Lambda Functions ] ───▶ [ DynamoDB ]
-       ▲
-       │
-[ CodePipeline + CodeDeploy ]
-       │
-[ GitHub Repo ]
+    ```plaintext
+    [ React App (EC2) ] ───▶ [ API Gateway ] ───▶ [ Lambda Functions ] ───▶ [ DynamoDB ]
+        ▲
+        │
+    [ CodePipeline + CodeDeploy ]
+        │
+    [ GitHub Repo ]
+    ```
 
 ---
 
@@ -120,4 +121,7 @@ Archivos clave:
 ### Build Logs
 
 ![build logs](buildLogs.PNG)
+
+```
+
 ```

@@ -6,6 +6,10 @@ La aplicación está desplegada públicamente y accesible desde:
 
 [http://3.148.235.61:3000/](http://3.148.235.61:3000/)
 
+Link al video con explicacion:
+
+[ Video](https://drive.google.com/file/d/1SiEetR4uICwt4m1hY5p5M6si3wR7eowt/view?usp=sharing)
+
 ---
 
 ## Tecnologías utilizadas

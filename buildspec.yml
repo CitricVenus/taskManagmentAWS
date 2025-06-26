@@ -2,18 +2,13 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      nodejs: 18
     commands:
+      - echo Installing dependencies...
       - npm ci
   build:
     commands:
-      - npm run build
-
+      - echo Build started on `date`
+      - npm run build # o el comando que uses para build
 artifacts:
   files:
-    - appspec.yml
-    - install.sh
-    - start.sh
     - '**/*'
-  base-directory: .

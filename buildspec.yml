@@ -5,11 +5,14 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      - npm ci   # o `npm install`
+      - npm ci
   build:
     commands:
       - npm run build
 
 artifacts:
   files:
-    - '**/*'
+    - appspec.yml
+    - install.sh
+    - start.sh
+    - build/**/*

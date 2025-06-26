@@ -1,7 +1,7 @@
 #!/bin/bash
 set -x
 
-cd /home/ec2-user/app
+cd /home/ec2-user/app || exit 1
 
-# Ejecutar el servidor en background y redirigir salida
-nohup npx http-server -p 3000 > server.log 2>&1 &
+# Iniciar servidor sin intentar escribir logs si no tienes permisos
+nohup npx http-server -p 3000 > /dev/null 2>&1 &

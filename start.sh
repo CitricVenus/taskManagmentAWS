@@ -1,7 +1,9 @@
 #!/bin/bash
 set -x
 
-cd /home/ec2-user/app || exit 1
+cd /home/ec2-user/app
 
-# Inicia http-server en segundo plano, redirige salida para debug
-nohup npx http-server -p 3000 > http-server.log 2>&1 &
+# Usa un servidor estático simple para servir la carpeta (ejemplo: http-server)
+# Asegúrate que http-server esté instalado globalmente en la instancia, o usa otro servidor.
+
+npx http-server -p 3000 &

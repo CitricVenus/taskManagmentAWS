@@ -1,4 +1,5 @@
 #!/bin/bash
 set -x
-
-cd /home/ec2-user/app
+DEST=/home/ec2-user/app
+mkdir -p "$DEST"
+cp -r ./* "$DEST/"
